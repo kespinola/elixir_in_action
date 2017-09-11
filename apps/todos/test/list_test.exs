@@ -15,15 +15,22 @@ defmodule Todos.ListTest do
         List.new,
         %{
           date: {2017, 9, 10},
-          note: 'test'
+          note: "test"
         }
       ) == %List{
         auto_id: 2,
-        entries: Map.put(
-                   %{},
-                   1,
-                   Todo.new(%{id: 1, date: {2017, 9, 10}, note: 'test'})
-                )
+        entries: %{1 => Todo.new(%{id: 1, date: {2017, 9, 10}, note: "test"})}
+      }
+    end
+  end
+
+  describe ".from_list/1" do
+    test "new todo list from list" do
+      List.from_list(
+        [%{date: "2017/9/10", note: "test"}]
+      ) == %List{
+        auto_id: 2,
+        entries: %{1 => Todo.new(%{id: 1, date: {2017, 9, 10}, note: "test"})}
       }
     end
   end

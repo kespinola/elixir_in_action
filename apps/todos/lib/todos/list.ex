@@ -19,4 +19,12 @@ defmodule Todos.List do
 
     %__MODULE__{list | auto_id: auto_id + 1, entries: Map.put(entries, auto_id, todo)}
   end
+
+  def from_list(list) do
+    list
+    |> Enum.map(fn(%{date: date} = todo) ->
+      %{todo | date: date |> String.split("/") |> Date.new}
+    end)
+    |> Enum.reduce(list, List.new, &List.add(&1, &2))
+  end
 end
