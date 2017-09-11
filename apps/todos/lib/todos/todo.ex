@@ -1,18 +1,15 @@
 defmodule Todos.Todo do
   @moduledoc """
-  Documentation for Todos.
+  Manage todos for a list
   """
+
+  defstruct id: nil, date: nil, note: ''
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Todos.hello
-      :world
-
   """
-  def hello do
-    :world
-  end
+  def new(%{
+    id: id,
+    date: {year, month, day},
+    note: note
+  }), do: %__MODULE__{id: id, date: Date.new(year, month, day), note: note}
 end
