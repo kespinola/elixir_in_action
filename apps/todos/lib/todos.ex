@@ -9,7 +9,7 @@ defmodule Todos do
 
   def from_csv(path) do
     path
-    |> CsvImporter.import
+    |> CsvImporter.process
     |> CsvImporter.decode([:date, :note])
     |> Enum.to_list
     |> List.from_list
